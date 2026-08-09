@@ -308,12 +308,12 @@
         let addItems = document.querySelector("#addItems");
         let foodList = document.querySelector("#foodList");
         let itemCount = document.querySelector("#itemCount");
+        let price = document.querySelector("#price").value.trim();
 
         displayFood();
 
         addItems.addEventListener("click", () => {
             let name = document.querySelector("#name").value.trim();
-            let price = document.querySelector("#price").value.trim();
             let id = Date.now();
 
             if (!name || !price) {
@@ -338,6 +338,15 @@
             document.querySelector("#price").value = "";
 
             displayFood();
+
+        });
+        price.addEventListener("keydown", (event)=>{
+            if (event.key === "Enter") {
+                displayFood();
+            } else if (!name || !price){
+                alert("Please enter food name and price");
+                return;
+            }
         });
 
         function displayFood() {
