@@ -308,12 +308,14 @@
         let addItems = document.querySelector("#addItems");
         let foodList = document.querySelector("#foodList");
         let itemCount = document.querySelector("#itemCount");
-        let price = document.querySelector("#price").value.trim();
+
+        addItems.addEventListener("click", addItemsFunc);
 
         displayFood();
 
-        addItems.addEventListener("click", () => {
-            let name = document.querySelector("#name").value.trim();
+        function addItemsFunc() {
+            let name = document.querySelector("#name").value;
+            let price = document.querySelector("#price").value;
             let id = Date.now();
 
             if (!name || !price) {
@@ -339,15 +341,14 @@
 
             displayFood();
 
-        });
-        price.addEventListener("keydown", (event)=>{
-            if (event.key === "Enter") {
-                displayFood();
-            } else if (!name || !price){
-                alert("Please enter food name and price");
-                return;
+        };
+
+        document.querySelector("price").addEventListener("keydown", (event)=>{
+            if(event.key === "Enter"){
+                addItemsFunc();
             }
         });
+        
 
         function displayFood() {
             let collection = "";
